@@ -142,10 +142,8 @@ void draw(){
   }
   */
   
-  for (int i = 0; i < numAgents; i++){
+   for (int i = 0; i < numAgents; i++){
     Agent currA = agents.get(i);
-    
-    //generate new goal if reach goal
     int count = 5;
     while (currA.curPath.size() <= 0 && count > 0){
       
@@ -157,7 +155,13 @@ void draw(){
     }
     
     if (currA.curPath.size() <= 0) currA.status = 0;
+  }
+  
+  for (int i = 0; i < numAgents; i++){
+    Agent currA = agents.get(i);
     
+    //generate new goal if reach goal
+
     //compute ttc
     currA.setVelDir();
     computeAgentForces(currA);
