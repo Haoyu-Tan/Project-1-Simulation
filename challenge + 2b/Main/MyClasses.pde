@@ -45,7 +45,7 @@ class Agent{
     this.vel = new Vec2(0, 0);
     
     angleToGoal = 0;
-    curAngle = 0;  
+    this.curAngle = PI;  
     angSpeed = 200;
     
     aIndex = ind;
@@ -136,10 +136,10 @@ class Agent{
       //HANDLE AGENT ROTEATE
       dir = vel.normalized();
       float sine = cross(new Vec2(1, 0), dir);
-      float sign = sine > 0 ? 1 : -1;
+      float sign = sine > 0 ? -1 :1;
       angleToGoal = acos(dot(dir, new Vec2(1, 0))) * sign;
       angleToGoal = angleToGoal * 180 / PI;
-     
+
       //curAngle = angleToGoal;
       //println("sin is " + sine);
       //println("angle to goal is " + angleToGoal);
@@ -165,7 +165,8 @@ class Agent{
       }
       
     }
-    
+    //curAngle = angleToGoal;
+     //    println(angleToGoal,curAngle);
   }
   
   

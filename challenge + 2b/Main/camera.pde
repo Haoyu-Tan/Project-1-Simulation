@@ -9,9 +9,10 @@ class Camera
   Camera()
   {
     //position      = new PVector(500, -800, -150); // initial position
-    position      = new PVector(500, 400, 1100); // initial position
-    theta         = 0; // rotation around Y axis. Starts with forward direction as ( 0, 0, -1 )
-    phi           = 0; // rotation around X axis. Starts with up direction as ( 0, 1, 0 )
+    //position      = new PVector(500, 1000,-500); // initial position
+    position      = new PVector(500, 930, -516); // initial position
+    theta         = PI; // rotation around Y axis. Starts with forward direction as ( 0, 0, -1 )
+    phi           = 0.75; // rotation around X axis. Starts with up direction as ( 0, 1, 0 )
     moveSpeed     = 300;
     turnSpeed     = 1.57; // radians/sec
     boostSpeed    = 10;  // extra speed boost for when you press shift
@@ -44,6 +45,8 @@ class Camera
     PVector upDir      = new PVector( sin( phi ) * cos( t ), cos( phi ), -sin( t ) * sin( phi ) );
     PVector rightDir   = new PVector( cos( theta ), 0, -sin( theta ) );
     PVector velocity   = new PVector( negativeMovement.x + positiveMovement.x, negativeMovement.y + positiveMovement.y, negativeMovement.z + positiveMovement.z );
+    upDir = upDir.mult(-1);
+    rightDir = rightDir.mult(-1);
     position.add( PVector.mult( forwardDir, moveSpeed * velocity.z * dt ) );
     position.add( PVector.mult( upDir,      moveSpeed * velocity.y * dt ) );
     position.add( PVector.mult( rightDir,   moveSpeed * velocity.x * dt ) );
@@ -53,6 +56,7 @@ class Camera
     camera( position.x, position.y, position.z,
             position.x + forwardDir.x, position.y + forwardDir.y, position.z + forwardDir.z,
             upDir.x, upDir.y, upDir.z );
+    println(position,phi);
   }
   
   // only need to change if you want difrent keys for the controls
@@ -72,10 +76,10 @@ class Camera
       phi = defaults.phi;
     }
     
-    if ( keyCode == LEFT )  negativeTurn.x = 1;
-    if ( keyCode == RIGHT ) positiveTurn.x = -0.5;
-    if ( keyCode == UP )    positiveTurn.y = 0.5;
-    if ( keyCode == DOWN )  negativeTurn.y = -1;
+    if ( keyCode == LEFT )  negativeTurn.x = -1;
+    if ( keyCode == RIGHT ) positiveTurn.x = 0.5;
+    if ( keyCode == UP )    positiveTurn.y = -0.5;
+    if ( keyCode == DOWN )  negativeTurn.y = 1;
     
     if ( keyCode == SHIFT ) shiftPressed = true; 
     if (shiftPressed){

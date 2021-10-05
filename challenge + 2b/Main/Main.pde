@@ -4,7 +4,7 @@
 //import processing.opengl.*;
 
 //#
-int numObstacles = 30;
+int numObstacles = 25;
 int numNodes = 500;
 int numAgents = 5;
 
@@ -81,6 +81,7 @@ void draw(){
   //draw background
   background(0, 0, 0); //Grey background
   lights();
+  directionalLight(100, 100, 100, 0, -0.8,  0.6);
   
   float deltaT = 1.0 / frameRate;
   
@@ -212,8 +213,8 @@ void drawObstacles(){
   for (int i = 0; i < numObstacles; i++){
     
     pushMatrix();
-    translate(circlePos[i].x, circlePos[i].y, 0);
-    rotateX(PI / 2);
+    translate(circlePos[i].x, 0, circlePos[i].y);
+    //rotateX(PI / 2);
     float or = circleRad[i] - nodeRad;
     scale(or * obstacleSF);
     //obstacle.setFill(color(0, 255, 0));
@@ -245,23 +246,23 @@ void drawNodes(){
 
 
 void drawAgents(){
+
   for(int i = 0; i < numAgents; i++){
      //agents.get(i).draw();
      Agent a = agents.get(i);
      
      pushMatrix();
-     translate(a.pos.x, a.pos.y, 0);
-     rotateX(PI / 2);
-     rotateY(PI / 2);
-     rotateY(a.curAngle * PI / 180);
+     translate(a.pos.x,0, a.pos.y);
+     //rotateX(PI / 2);
+     rotateY(PI / 2 +  a.curAngle * PI / 180);
      scale(nodeRad * agentSF);
      agent.setFill(a.col);
      shape(agent);
      popMatrix();
      
      pushMatrix();
-     translate(a.goal.x, a.goal.y, 0);
-     rotateX(PI / 2);
+     translate(a.goal.x,0,  a.goal.y);
+     //rotateX(PI / 2);
      scale(nodeSF);
      //goal.setFill(a.col);
      shape(goal);
@@ -271,7 +272,7 @@ void drawAgents(){
      popMatrix();
      
      pushMatrix();
-     translate(a.goal.x, a.goal.y, objH);
+     translate(a.goal.x, objH,  a.goal.y);
      //noStroke();
      fill(a.col);
      sphere(nodeRad / 2);
@@ -304,10 +305,10 @@ void drawBoard(){
   //translate(500, 1000,0);
   beginShape();
   texture(ground);
-  vertex(-50, -30, 0, 0, 0);
-  vertex(1050, -30, 0, ground.width, 0);
-  vertex(1050, 830, 0, ground.width, ground.height);
-  vertex(-50, 830, 0, ground.height);
+  vertex(-50,0,  -30, 0, 0);
+  vertex(1050, 0,  -30, ground.width, 0);
+  vertex(1050, 0, 830, ground.width, ground.height);
+  vertex(-50, 0, 830,0, ground.height);
   endShape(CLOSE);
   popMatrix();
   
@@ -336,16 +337,16 @@ void drawLine(){
     stroke(currAgent.col);
     strokeWeight(5);
     if (currAgent.curPath.size() == 0){
-      line(currAgent.pos.x, currAgent.pos.y, 0, currAgent.goal.x, currAgent.goal.y, 0);
+      line(currAgent.pos.x, 1, currAgent.pos.y, currAgent.goal.x, 1,currAgent.goal.y);
       return;
     }
     
     //println("draw line");
-    line(currAgent.pos.x,currAgent.pos.y, 0, currAgent.curPath.get(0).x, currAgent.curPath.get(0).y, 1);
+    line(currAgent.pos.x,1,currAgent.pos.y, currAgent.curPath.get(0).x, 1, currAgent.curPath.get(0).y);
     for (int j = 0; j < currAgent.curPath.size() - 1; j++){
       Vec2 curNode = currAgent.curPath.get(j);
       Vec2 nextNode = currAgent.curPath.get(j+1);
-      line(curNode.x, curNode.y, 1, nextNode.x, nextNode.y, 1);
+      line(curNode.x, 1, curNode.y, nextNode.x, 1, nextNode.y);
     }
     //line(currAgent.goal.x, currAgent.goal.y,  0, currAgent.curPath.get(currAgent.curPath.size()-1).x, currAgent.curPath.get(currAgent.curPath.size()-1).y, 0);
   }
@@ -375,7 +376,9 @@ void drawTest(){
   for (int i = 0; i < numObstacles; i++){
     float or = circleRad[i] - nodeRad;
     pushMatrix();
-    translate(circlePos[i].x, circlePos[i].y, objZ);
+    translate(circlePos[i].x, objZ, circlePos[i].y);
+    rotateX(-PI / 2);
+    
     //float or = circleRad[i] - nodeRad;
     //drawCylinder( 20,  or, objH);
     
@@ -415,7 +418,9 @@ void drawTest(){
      
      pushMatrix();
      fill(a.col);
-     translate(a.pos.x, a.pos.y, 0);
+     
+     translate(a.pos.x,0,  a.pos.y);
+     rotateX(-PI / 2);
      drawCylinder(25, nodeRad, 0);
      //circle(a.pos.x, a.pos.y, nodeRad);
      popMatrix();
