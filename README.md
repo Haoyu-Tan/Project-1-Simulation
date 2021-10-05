@@ -55,6 +55,17 @@ Multiple agents navigate in environment while avoid colliding with each other
 
 
 ## Video & Time Stamp
+Link:
+https://youtu.be/ZLE3K21MKyI
+Time Stamp:
+* 0:00:09-0:00:22 delete an agent
+* 0:00:26-0:00:27 single agent navigation
+* 0:00:42-0:00:50 enable and disable sphere sourround agents and obstacles
+* 0:00:58-0:01:00 enable and disable lines connect from agents to goal
+* 0:01:00-0:01:35 part 2b multiple agents navigation and avoid obstacles
+* 0:01:38-0:02:10 camera movement and rotation
+* 0:02:12-0:03:07 challenge part -- simulations in at least 2 scene
+
 
 ## Art Contest
 Christmas Eve
