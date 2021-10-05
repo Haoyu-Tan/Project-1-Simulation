@@ -65,7 +65,7 @@ Time Stamp:
 * 0:00:58-0:01:00 enable and disable lines connect from agents to goal
 * 0:01:00-0:01:35 part 2b multiple agents navigation and avoid obstacles
 * 0:01:38-0:02:10 camera movement and rotation
-* 0:02:12-0:03:07 challenge part -- simulations in at least 2 scene
+* 0:02:12-0:03:07 challenge part -- simulations in 2 scenes
 
 
 ## Art Contest
