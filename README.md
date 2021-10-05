@@ -59,8 +59,9 @@ Link:
 https://youtu.be/ZLE3K21MKyI
 
 Time Stamp:
-* 0:00:09-0:00:22 delete an agent
+* 0:00:09-0:00:22 delete an agent from scene
 * 0:00:26-0:00:27 single agent navigation
+* 0:0027-0:0037 adding new agents to scene and multiple agents navigations
 * 0:00:42-0:00:50 enable and disable sphere sourround agents and obstacles
 * 0:00:58-0:01:00 enable and disable lines connect from agents to goal
 * 0:01:00-0:01:35 part 2b multiple agents navigation and avoid obstacles
