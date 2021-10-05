@@ -74,7 +74,7 @@ Christmas Eve
 
 ![cf94475902130bc47f88cfe8caaaaeb](https://user-images.githubusercontent.com/35856355/135948495-f3576bb6-8381-4290-bca6-70c97b504a8a.png)
 
-With debug mode open
+With sphere and lines visible
 
 ![3ba84c0af78cdfedfaf3f80fb6ce7ff](https://user-images.githubusercontent.com/35856355/135948047-a957fbc9-3096-4d3c-b028-98dec0320c81.png)
 
