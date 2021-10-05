@@ -4,13 +4,13 @@
 //import processing.opengl.*;
 
 //#
-int numObstacles = 25;
+int numObstacles = 20;
 int numNodes = 500;
-int numAgents = 5;
+int numAgents = 8;
 
 int maxNumNodes = 1000;
 int maxNumObstacles = 1000;
-int maxNumAgents = 10;
+int maxNumAgents = 15;
   
 //arr
 //agent
