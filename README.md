@@ -44,3 +44,4 @@ Challenge: Crowd Simulation (grad*)
 * model of sled: https://assetstore.unity.com/packages/3d/characters/low-poly-winter-pack-78938
 * model of ground texture: https://assetstore.unity.com/packages/2d/textures-materials/lowpoly-textures-pack-140717
 * all other models: https://quaternius.com/index.html
+* Camera code and the basic framework for running PRM is provided by Liam Tyler and professor Guy
