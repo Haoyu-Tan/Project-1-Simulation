@@ -4,7 +4,7 @@
 
 This is a navigation simulation project using Processing. The program will generate a random scene with obstacles and several agents. Each agent will be assigned to a random goal in the scene at the beginning, and it will find a reasonable path to move naturally toward the goal while the program is running. The program uses Probabilistic Roadmap(PRM) with A* to generate an optimal path for each agent, based on a large number of nodes generate in the scene. At the same time, each agent will also find shortcut during its movement. Once an agent reach its current goal, the next goal will be automatically selected and assigned to it.
 
-In challenge part, each agent will try its best to avoid other agents while finding its goal.
+In challenge part, each agent will try its best to avoid other agents while finding its goal. The strategy implemented in this part is TTC forces.
  
 ## Features Implemented
 
@@ -31,7 +31,9 @@ Challenge: Crowd Simulation (grad*)
 
 ## Difficulties:
 
+The first difficulty is to modify the structure based on the previous part (plan path and running PRM). Chaning the project from 2D to 3D requires fixing the structure of existing code, which is not hard but time consuming.
 
+The second difficulty is the challenge part. I first implemented the TTC step by step based on what we learnt on class. However, when the simulation ran for a long time, agents will started getting stuck with each other when they stay among several obstacles. This problem was greatly improved when I chose to update the forces and velocity on an agent together rather than seperately update the forces for all agents first and then update their velocity. The effect was that some agents looked "arrogant" and pushed others away a little bit to avoid all of them stucking together.
 
 ## Images
 
