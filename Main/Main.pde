@@ -4,13 +4,13 @@
 //import processing.opengl.*;
 
 //#
-int numObstacles = 35;
+int numObstacles = 30;
 int numNodes = 500;
-int numAgents = 7;
+int numAgents = 5;
 
 int maxNumNodes = 1000;
 int maxNumObstacles = 1000;
-int maxNumAgents = 15;
+int maxNumAgents = 10;
   
 //arr
 //agent
@@ -82,11 +82,13 @@ void draw(){
   background(0, 0, 0); //Grey background
   lights();
   
+  float deltaT = 1.0 / frameRate;
+  
   //update camera
-  camera.Update(1.0/frameRate);
+  camera.Update(deltaT);
   
   
-  /**
+  
   for (int i = 0; i < numAgents; i++){
 
     Agent currA = agents.get(i);
@@ -104,26 +106,18 @@ void draw(){
   
   
   for(int i = 0; i < numAgents; i++){
-    
-    agents.get(i).setVelDir();
-  }
-  
-  
-  //compute agent force for each agent
-  for (int i = 0; i < numAgents; i++){
-    
     Agent curA = agents.get(i);
-    //println(curA.status);
-    
+    curA.setVelDir();
     computeAgentForces(curA);
     //println(i,agents.get(i).agentF);
+    
+    curA.update(deltaT);
   }
- 
   
   //update agents
   for (int i = 0; i < numAgents; i++){
     Agent currA = agents.get(i);
-    currA.update(1.0 / frameRate);
+    currA.updatePosition(deltaT);
     currA.findShorterPath();
     
     
@@ -140,51 +134,7 @@ void draw(){
     }
     
   }
-  */
   
-   for (int i = 0; i < numAgents; i++){
-    Agent currA = agents.get(i);
-    int count = 5;
-    while (currA.curPath.size() <= 0 && count > 0){
-      
-      currA.resetStart(currA.pos);
-      Vec2 sfp = generatePos();
-      currA.resetGoal(sfp);
-      runPRM(currA);
-      count--;
-    }
-    
-    if (currA.curPath.size() <= 0) currA.status = 0;
-  }
-  
-  for (int i = 0; i < numAgents; i++){
-    Agent currA = agents.get(i);
-    
-    //generate new goal if reach goal
-
-    //compute ttc
-    currA.setVelDir();
-    computeAgentForces(currA);
-    
-    //update agent
-    currA.update(1.0 / frameRate);
-    
-    //find shortcut if exist
-    currA.findShorterPath();
-    
-    
-    //rerun plan path
-    if (currA.curPath.size() > 0){
-      Vec2 d = (currA.pos).minus(currA.curPath.get(0)).normalized();
-      float dtn = (currA.pos).distanceTo(currA.curPath.get(0));
-      hitInfo hi = rayCircleListIntersect(circlePos, circleRad, numObstacles, currA.curPath.get(0), d, dtn);
-      
-      if (hi.hit){
-        currA.resetStart(currA.pos);
-        runPRM(currA);
-      }
-    }
-  }
   
   //draw a board
   drawBoard();
@@ -208,7 +158,7 @@ void draw(){
 }
 
 //================compute update agent==============
-float tH = 5;
+float tH = 3;
 void computeAgentForces(Agent a){
     
     //Find velocity pointing to the goal
@@ -354,10 +304,10 @@ void drawBoard(){
   //translate(500, 1000,0);
   beginShape();
   texture(ground);
-  vertex(-30, 0, 0, 0, 0);
-  vertex(1050, 0, 0, ground.width, 0);
+  vertex(-50, -30, 0, 0, 0);
+  vertex(1050, -30, 0, ground.width, 0);
   vertex(1050, 830, 0, ground.width, ground.height);
-  vertex(-30, 830, 0, ground.height);
+  vertex(-50, 830, 0, ground.height);
   endShape(CLOSE);
   popMatrix();
   

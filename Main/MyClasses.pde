@@ -80,35 +80,40 @@ class Agent{
   }
   
   void updateVel(float dt){
-    Vec2 currNode = curPath.get(0);
     
-    ///////
-    //println("old",vel);
-    //println("AgentF is ",agentF);
-    vel.add(agentF.times(dt));
-    //agentF = new Vec2(0,0);
-    //println("new",vel);
-    //avoid a large speed
-    if (vel.length() > 1.5 * speed) vel.setToLength(1.5 * speed);
+      ///////
+      //println("old",vel);
+      //println("AgentF is ",agentF);
+      vel.add(agentF.times(dt));
+      //agentF = new Vec2(0,0);
+      //println("new",vel);
+      //avoid a large speed
+      if (vel.length() > 1.5 * speed) vel.setToLength(1.5 * speed);
+     
+      //update velocity
+    
    
-    //update velocity
-    
-    
-    boolean reachNode = false;
-    int nodeRegion = 5;
-    
-    float distToCurrNode = pos.distanceTo(currNode);
-    //already inside current node region
-    if (distToCurrNode <= nodeRegion) reachNode = true;
-    
-    float hitT = rayCircleIntersectTime(currNode, nodeRegion, pos, vel.normalized());
-    Vec2 deltaPos = vel.times(dt);
-    if (hitT >= 0 && hitT <= deltaPos.length()) reachNode = true;
-    if (reachNode) curPath.remove(0);
-    
-    pos.add(deltaPos);
-    
-    avoidObstacle();
+  }
+  
+  void updatePosition(float dt){
+    if (curPath.size() > 0){
+      Vec2 currNode = curPath.get(0);
+      boolean reachNode = false;
+      int nodeRegion = 5;
+      
+      float distToCurrNode = pos.distanceTo(currNode);
+      //already inside current node region
+      if (distToCurrNode <= nodeRegion) reachNode = true;
+      
+      float hitT = rayCircleIntersectTime(currNode, nodeRegion, pos, vel.normalized());
+      Vec2 deltaPos = vel.times(dt);
+      if (hitT >= 0 && hitT <= deltaPos.length()) reachNode = true;
+      if (reachNode) curPath.remove(0);
+      
+      pos.add(deltaPos);
+      
+      avoidObstacle();
+    }
   }
   
   void update(float dt){
