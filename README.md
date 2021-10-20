@@ -4,7 +4,7 @@
 
 This is a navigation simulation project using Processing. The program will generate a random scene with obstacles and several agents. Each agent will be assigned to a random goal in the scene at the beginning, and it will find a reasonable path to move naturally toward the goal while the program is running. The program uses Probabilistic Roadmap(PRM) with A* to generate an optimal path for each agent, based on a large number of nodes generate in the scene. At the same time, each agent will also find shortcut during its movement. Once an agent reach its current goal, the next goal will be automatically selected and assigned to it.
 
-In challenge part, each agent will try its best to avoid other agents while finding its goal. The strategy implemented in this part is TTC forces.
+In challenge part, each agent will try its best to avoid other agents while finding its goal. The strategy implemented in this part is computing the TTC forces among agents.
  
 ## Features Implemented
 
