@@ -1,4 +1,4 @@
-# Project 1 Simulation
+# Motion Planning & Crowd Simulation
 
 ## Description
 
